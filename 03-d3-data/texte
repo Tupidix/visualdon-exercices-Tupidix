@@ -1,0 +1,17 @@
+data.forEach((personne) => {
+	select("#graphique").append("div").attr("id", `container${personne.id}`);
+
+	select(`container${personne.id}`)
+		.selectAll("rect")
+		.data(tableauNombrePostUtilisateurs)
+		.join((enter) =>
+			enter
+				.append("rect")
+				.attr("width", "50px")
+				.attr("height", (d) => d * 20)
+				.attr("x", (d, i) => i * 70)
+				.attr("y", (d) => 100 - d)
+				.attr("id", (d, i) => `rect${i + 1}`)
+		);
+	select(`#container${personne.id}`).append("p").text(`${personne.username}`);
+});
